@@ -1,0 +1,75 @@
+together = merge(PFFScoutingData, plays, by = c("gameId", "playId"))
+
+#factoring the necessary categories
+together$snapDetail=factor(together$snapDetail, levels=c("H","L","OK","<",">"))
+together$kickDirectionIntended=factor(together$kickDirectionIntended, 
+                                      levels=c("L","R","C"))
+together$kickDirectionActual=factor(together$kickDirectionActual, 
+                                      levels=c("L","R","C"))
+together$returnDirectionActual=factor(together$returnDirectionActual, 
+                                      levels=c("L","R","C"))
+together$returnDirectionIntended=factor(together$returnDirectionIntended, 
+                                      levels=c("L","R","C"))
+together$kickContactType=factor(together$kickContactType, 
+                                      levels=c("BB","BC","BF","BOG","CC","CFFG",
+                                               "DEZ","ICC","KTB","KCC","KTF","MBC",
+                                               "MBDR","OOB"))
+together$quarter=factor(together$quarter, levels=c("1","2","3","4"))
+together$down=factor(together$down, levels=c("1","2","3","4"))
+
+
+#seperate punts from plus and minus side of field *want to focus on minus (own side)*
+minus = subset(together, together$possessionTeam == together$yardlineSide)
+plus = subset(together, together$possessionTeam != together$yardlineSide)
+minus = subset(minus, minus$specialTeamsPlayType == "Punt")
+
+
+#break down the merged dataset by punt style 
+PuntN = subset(together, together$kickType == "N")
+PuntR = subset(together, together$kickType == "R")
+PuntA = subset(together, together$kickType == "A")
+
+
+library(tidyr)
+#create columns for each individual rusher and gunner
+minusRush = separate(minus, col=puntRushers, into=c('Rusher 1', 'Rusher 2', 'Rusher 3', 'Rusher 4',
+                                        'Rusher 5', 'Rusher 6', 'Rusher 7', 'Rusher 8'), 
+         sep=';')
+
+minusRush = separate(minusRush, col=gunners, into=c('Gunner 1', 'Gunner 2'), 
+                     sep=';')
+
+#remove non-special teams result (causing NA)
+minusRush<-minusRush[!(minusRush$specialTeamsResult=="Non-Special Teams Result"),]
+#still returning NA, find the data messing it up
+
+findna = minusRush[(minusRush$operationTime == "NA"),]
+#gameid: 2018121501, playId: 449 was removed
+
+
+#3 or more rushers and 3 or less
+norush = minusRush[(is.na(minusRush$`Rusher 3`)),]
+
+#gameid: 2018121501, playId: 449 was removed^
+norush <- norush[-c(1157), ]
+
+rush = minusRush[(!(is.na(minusRush$`Rusher 3`))),]
+
+#mean of optimes
+mean(norush$operationTime) #2.143594
+mean(rush$operationTime) #2.108522
+#no significant difference in operation time
+
+#rushed punts that were accurate vs inaccurate 
+acc_rush = subset(rush, rush$kickDirectionIntended == rush$kickDirectionActual)
+inacc_rush = subset(rush, rush$kickDirectionIntended != rush$kickDirectionActual)
+
+dim(acc_rush) #.974
+dim(inacc_rush) #.026
+
+#not-rushed punts that were accurate vs inaccurate 
+acc_norush = subset(norush, norush$kickDirectionIntended == norush$kickDirectionActual)
+inacc_norush = subset(norush, norush$kickDirectionIntended != norush$kickDirectionActual)
+
+dim(acc_norush) #.9638
+dim(inacc_norush) #.0362
