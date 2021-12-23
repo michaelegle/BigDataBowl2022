@@ -181,3 +181,18 @@ data20 <- data20 %>%
   mutate(x_end = (s * cos(dir)) + x,
          y_end = (s * sin(dir)) + y)
 
+###### Filter out non-punt plays as well as fake punts #######
+
+data18 <- data18 %>%
+  filter(special_teams_play_type == "Punt") %>%
+  filter(special_teams_result != "Non-Special Teams Result")
+
+data19 <- data19 %>%
+  filter(special_teams_play_type == "Punt") %>%
+  filter(special_teams_result != "Non-Special Teams Result")
+
+data20 <- data20 %>%
+  filter(special_teams_play_type == "Punt") %>%
+  filter(special_teams_result != "Non-Special Teams Result")
+
+
