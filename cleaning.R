@@ -23,6 +23,7 @@ players <- players %>%
 games <- games %>%
   janitor::clean_names()
 
+tictoc::tic()
 
 plays <- left_join(plays, games, by = "game_id") %>%
   mutate(defense_team = ifelse(possession_team == home_team_abbr,
@@ -34,20 +35,32 @@ plays <- left_join(plays, games, by = "game_id") %>%
 data18 <- data18 %>%
   left_join(plays %>%
               select(game_id, play_id, possession_team, yardline_side, yardline_number,
-                     home_team_abbr, visitor_team_abbr),
+                     home_team_abbr, visitor_team_abbr, special_teams_play_type, special_teams_result),
             by = c("game_id", "play_id"))
 
 data19 <- data19 %>%
   left_join(plays %>%
               select(game_id, play_id, possession_team, yardline_side, yardline_number,
-                     home_team_abbr, visitor_team_abbr),
+                     home_team_abbr, visitor_team_abbr, special_teams_play_type, special_teams_result),
             by = c("game_id", "play_id"))
 
 data20 <- data20 %>%
   left_join(plays %>%
               select(game_id, play_id, possession_team, yardline_side, yardline_number,
-                     home_team_abbr, visitor_team_abbr),
+                     home_team_abbr, visitor_team_abbr, special_teams_play_type, special_teams_result),
             by = c("game_id", "play_id"))
+
+data18 <- data18 %>%
+  filter(special_teams_play_type == "Punt") %>%
+  filter(special_teams_result != "Non-Special Teams Result")
+
+data19 <- data19 %>%
+  filter(special_teams_play_type == "Punt") %>%
+  filter(special_teams_result != "Non-Special Teams Result")
+
+data20 <- data20 %>%
+  filter(special_teams_play_type == "Punt") %>%
+  filter(special_teams_result != "Non-Special Teams Result")
 
 ####### add extra player level data ########
 
@@ -80,6 +93,8 @@ data20 <- data20 %>%
                             visitor_team_abbr),
          on_defense = ifelse(defense_team == team_abbr, T, F),
          on_offense = ifelse(possession_team == team_abbr, T, F))
+
+print("Data Cleaned")
 
 ####### Standardize coordinates #######
 
@@ -167,6 +182,8 @@ data20 <- data20 %>%
          ),
          x_depth = x - x_los)
 
+print("Data Standardized")
+
 ###### Add estimated end coordinates based on player's direction and speed ######
 
 data18 <- data18 %>%
@@ -183,16 +200,22 @@ data20 <- data20 %>%
 
 ###### Filter out non-punt plays as well as fake punts #######
 
-data18 <- data18 %>%
-  filter(special_teams_play_type == "Punt") %>%
-  filter(special_teams_result != "Non-Special Teams Result")
+tictoc::toc()
 
-data19 <- data19 %>%
-  filter(special_teams_play_type == "Punt") %>%
-  filter(special_teams_result != "Non-Special Teams Result")
+print(dim(data18))
+print(dim(data19))
+print(dim(data20))
 
-data20 <- data20 %>%
-  filter(special_teams_play_type == "Punt") %>%
-  filter(special_teams_result != "Non-Special Teams Result")
+tictoc::tic()
 
+write_csv(data18, "punts18.csv")
+print("2018 CSV complete")
+write_csv(data19, "punts19.csv")
+print("2019 CSV complete")
+write_csv(data20, "putns20.csv")
+print("2020 CSV complete")
+
+tictoc::toc()
+
+print("Done")
 
