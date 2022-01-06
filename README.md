@@ -11,7 +11,7 @@
 | Michael Egle | [<img align="middle" alt="ISU" width="60px" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Flonestargridiron.com%2Fwp-content%2Fuploads%2F2016%2F02%2FIowa_State_Cyclones_logo.svg_.png&f=1&nofb=1" />][ISU] |
 | Conor McQuiston | [<img align="middle" alt="M" width="60px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.formassembly.com%2Fcontent%2Fuploads%2F2018%2F11%2FUniversity-of-Michigan_logo.png&f=1&nofb=1" />][M] |
 
-## 2021 Prompt and a summary of our Solution (our full submission can be found [here](https://www.kaggle.com/mjegle/drop-the-net/)
+## 2022 Prompt and a summary of our Solution (our full submission can be found [here](https://www.kaggle.com/mjegle/drop-the-net/)
 
 This years prompt was all about special teams. Other than that, the prompt was pretty open-ended; just uncover something cool about special teams using data! Our team specifically (add one or two sentence summary here)
 ## Scripts
