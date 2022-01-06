@@ -13,7 +13,7 @@
 
 ## 2022 Prompt and a summary of our Solution (our full submission can be found [here](https://www.kaggle.com/mjegle/drop-the-net/))
 
-This years prompt was all about special teams. Other than that, the prompt was pretty open-ended; just uncover something cool about special teams using data! Our team specifically (add one or two sentence summary here)
+This year's prompt was all about special teams. Other than that, the prompt was pretty open-ended; just uncover something cool about special teams using data! Our team specifically (add one or two sentence summary here)
 ## Scripts
 
 ### cleaning.R
