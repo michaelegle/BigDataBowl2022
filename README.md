@@ -1,6 +1,6 @@
 # BigDataBowl2022 [<img align="middle" alt="BDB" width="60px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Foperations.nfl.com%2Fmedia%2F3608%2Fbig-data-bowl-new-logo_750.png%3Fmode%3Dpad%26rnd%3D131956651790000000&f=1&nofb=1" />][BDB] [<img align="middle" alt="NFL" width="60px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodownload.org%2Fwp-content%2Fuploads%2F2020%2F07%2Fnfl-logo-0.png&f=1&nofb=1" />][NFL]
-This is the 2021 Big Data Bowl repository for the team consisting of Max Bolger (Hamline University), Kenan Clarke (Cornell University), Michael Egle (Iowa State University), and Conor McQuiston (University of Michigan).
 
+[![Website](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/max-bolger/)
 
 [![Website](https://img.shields.io/badge/My_Website_Portfolio-9cf?style=for-the-badge)](https://maxbolger.github.io/)
 
@@ -13,8 +13,9 @@ This is the 2021 Big Data Bowl repository for the team consisting of Max Bolger 
 | Michael Egle | [<img align="middle" alt="ISU" width="60px" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Flonestargridiron.com%2Fwp-content%2Fuploads%2F2016%2F02%2FIowa_State_Cyclones_logo.svg_.png&f=1&nofb=1" />][ISU] |
 | Conor McQuiston | [<img align="middle" alt="M" width="60px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.formassembly.com%2Fcontent%2Fuploads%2F2018%2F11%2FUniversity-of-Michigan_logo.png&f=1&nofb=1" />][M] |
 
-## 2021 Prompt and s Summary of our Solution (our full submission can be found [here]()
+## 2021 Prompt and s Summary of our Solution (our full submission can be found [here](https://www.kaggle.com/mjegle/drop-the-net/)
 
+This years prompt was all about special teams. Other than that, the prompt was pretty open-ended; just uncover something cool about special teams using data! Our team specifically (add one or two sentence summary here)
 ## Scripts
 
 ### cleaning.R
@@ -34,5 +35,5 @@ This script filters down to the receiving team and determines whether each playe
 [CU]: https://www.cornell.edu
 [ISU]: https://www.iastate.edu
 [M]: https://umich.edu
-[BDB]:
-[NFL};
+[BDB]: https://www.kaggle.com/c/nfl-big-data-bowl-2022
+[NFL]: https://www.nfl.com
