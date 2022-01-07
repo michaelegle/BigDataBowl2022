@@ -8,6 +8,8 @@ data20 <- read_csv("punts20.csv")
 
 tictoc::tic()
 
+# Huge thank you to the team from UPenn for allowing me to use their code from last year's competition and repurposing it for this!
+
 get_opponent_separation <- function(play_data_df) {
   
   # data frame of only defense players
